@@ -9,7 +9,11 @@ public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
 
-        get("/blah", (req, res) -> "Hello!");
+        // Main application starting path - should fetch all to do's from database and display them
+        get("/", (req, res) -> {
+            res.redirect("index.html");
+            return null;
+        });
 
     }
 
