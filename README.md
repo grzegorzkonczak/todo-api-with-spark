@@ -22,7 +22,7 @@ Project was meant to follow a set of requirements. Base requirements were as fol
 Additional requirements:
 
 1. Add unit tests for DAO implementation methods (done)
-2. Functional tests are written for GET/POST/PUT/DELETE requests (not yet implemented)
+2. Functional tests are written for GET/POST/PUT/DELETE requests (WIP)
 
 To check my other work please go to:
 
