@@ -13,15 +13,15 @@ Project was meant to follow a set of requirements. Base requirements were as fol
 
 1. Model stores id, name, and isCompleated (done)
 2. Interface provides create, update, delete and the ability to findAll (done)
-3. Sql2o DAO implementation implements all methods from the Todo DAO interface and creates the table on initialization (WIP)
-4. GET /api/v1/todos return all todos and populates the web application (not yet implemented)
-5. POST /api/v1/todos creates a new Todo, returns it and sets the appropriate status code (not yet implemented)
+3. Sql2o DAO implementation implements all methods from the Todo DAO interface and creates the table on initialization (done)
+4. GET /api/v1/todos return all todos and populates the web application (done)
+5. POST /api/v1/todos creates a new Todo, returns it and sets the appropriate status code (done)
 6. PUT /api/v1/todos/xxx is handled and proper Todo is updated (not yet implemented)
 7. DELETE /api/v1/todos/xxx deletes the appropriate Todo sends back the appropriate status code and an empty body (not yet implemented)
 
 Additional requirements:
 
-1. Add unit tests for DAO implementation methods (not yet implemented)
+1. Add unit tests for DAO implementation methods (done)
 2. Functional tests are written for GET/POST/PUT/DELETE requests (not yet implemented)
 
 To check my other work please go to:
