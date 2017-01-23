@@ -12,6 +12,7 @@ import java.util.List;
 public class Sql2oTodoDao implements TodoDao{
 
     private final Sql2o sql2o;
+    private int id;
 
     public Sql2oTodoDao(Sql2o sql2o) {
         this.sql2o = sql2o;
@@ -25,7 +26,7 @@ public class Sql2oTodoDao implements TodoDao{
         // Open connection using try with resources
         try(Connection con = sql2o.open()) {
             // Execute update
-            int id = (int) con.createQuery(sql)
+            id = (int) con.createQuery(sql)
                     .bind(todo)
                     .executeUpdate()
                     .getKey();
@@ -38,13 +39,34 @@ public class Sql2oTodoDao implements TodoDao{
     }
 
     @Override
-    public void update(int id) throws DaoException {
+    public void update(Todo todo) throws DaoException {
+        // Create SQL statement
+        String sql = "UPDATE todos SET name = :name, is_completed = :completed WHERE id = :id";
+        // Open connection using try with resources
+        try(Connection con = sql2o.open()) {
+            // Execute update
+             con.createQuery(sql)
+                     .bind(todo)
+                     .executeUpdate();
 
+        }catch (Sql2oException ex){
+            throw new DaoException(ex, "Problem updating todo...");
+        }
     }
 
     @Override
     public void delete(int id) throws DaoException {
 
+    }
+
+    @Override
+    public Todo findById(int id) throws DaoException {
+        try (Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM todos WHERE id = :id")
+                    .addParameter("id", id)
+                    .addColumnMapping("IS_COMPLETED", "completed")
+                    .executeAndFetchFirst(Todo.class);
+        }
     }
 
     @Override

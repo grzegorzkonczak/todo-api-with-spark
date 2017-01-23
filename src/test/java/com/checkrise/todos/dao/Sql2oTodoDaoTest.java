@@ -35,6 +35,40 @@ public class Sql2oTodoDaoTest {
         assertNotEquals(originalTodoId, todo.getId());
     }
 
+    @Test
+    public void existingTodosCanBeFoundById() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        Todo foundTodo = dao.findById(todo.getId());
+
+        assertEquals(todo, foundTodo);
+    }
+
+    @Test
+    public void updatingExistingTodoChangesName() throws Exception {
+        Todo todo = newTestTodo();
+        String newName = "Test1";
+        dao.create(todo);
+
+        todo.setName(newName);
+        dao.update(todo);
+
+        assertEquals(newName, dao.findById(todo.getId()).getName());
+    }
+
+    @Test
+    public void updatingExistingTodoChangesCompleted() throws Exception {
+        Todo todo = newTestTodo();
+        boolean newCompleted = false;
+        dao.create(todo);
+
+        todo.setCompleted(newCompleted);
+        dao.update(todo);
+
+        assertEquals(newCompleted, dao.findById(todo.getId()).isCompleted());
+    }
+
     private Todo newTestTodo() {
         return new Todo("Test", true);
     }
