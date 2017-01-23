@@ -60,6 +60,14 @@ public class App {
             res.status(202);
             return todo;
         }, gson::toJson);
+
+        // DELETE API route - deletes existing to'do
+        delete("/api/v1/todos/:id", "application/json", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            dao.delete(id);
+            res.status(200);
+            return null;
+        }, gson::toJson);
     }
 
 }

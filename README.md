@@ -16,8 +16,8 @@ Project was meant to follow a set of requirements. Base requirements were as fol
 3. Sql2o DAO implementation implements all methods from the Todo DAO interface and creates the table on initialization (done)
 4. GET /api/v1/todos return all todos and populates the web application (done)
 5. POST /api/v1/todos creates a new Todo, returns it and sets the appropriate status code (done)
-6. PUT /api/v1/todos/xxx is handled and proper Todo is updated (not yet implemented)
-7. DELETE /api/v1/todos/xxx deletes the appropriate Todo sends back the appropriate status code and an empty body (not yet implemented)
+6. PUT /api/v1/todos/xxx is handled and proper Todo is updated (done)
+7. DELETE /api/v1/todos/xxx deletes the appropriate Todo sends back the appropriate status code and an empty body (done)
 
 Additional requirements:
 
