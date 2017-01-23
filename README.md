@@ -1,7 +1,6 @@
 # TODO API with Spark
 REST API for "TODO" application using Spark framework
 
-This project is stil work in progress, for details about what is and what's not yet implemented please check on the list below.
 
 This project is simulation of working together with frontend developer.
 My role in this simulation is to provide a working API (using database) for "TODO" simple web application that alredy has developed
@@ -11,18 +10,21 @@ Project initial files where provided by project idea creators (https://teamtreeh
 
 Project was meant to follow a set of requirements. Base requirements were as follows:
 
-1. Model stores id, name, and isCompleated (done)
-2. Interface provides create, update, delete and the ability to findAll (done)
-3. Sql2o DAO implementation implements all methods from the Todo DAO interface and creates the table on initialization (done)
-4. GET /api/v1/todos return all todos and populates the web application (done)
-5. POST /api/v1/todos creates a new Todo, returns it and sets the appropriate status code (done)
-6. PUT /api/v1/todos/xxx is handled and proper Todo is updated (done)
-7. DELETE /api/v1/todos/xxx deletes the appropriate Todo sends back the appropriate status code and an empty body (done)
+1. Model stores id, name, and isCompleted
+2. Interface provides create, update, delete and the ability to findAll
+3. Sql2o DAO implementation implements all methods from the Todo DAO interface and creates the table on initialization
+4. GET /api/v1/todos return all todos and populates the web application
+5. POST /api/v1/todos creates a new Todo, returns it and sets the appropriate status code
+6. PUT /api/v1/todos/xxx is handled and proper Todo is updated
+7. DELETE /api/v1/todos/xxx deletes the appropriate Todo sends back the appropriate status code and an empty body
 
 Additional requirements:
 
-1. Add unit tests for DAO implementation methods (done)
-2. Functional tests are written for GET/POST/PUT/DELETE requests (WIP)
+1. Add unit tests for DAO implementation methods
+2. Functional test is written to prove that Todos are returned with GET request
+3. Functional test is written to prove that during POST request creation happens and proper status code is returned
+4. Functional test is written to prove that when PUT request is made the update occurs
+5. Functional test is written to prove that when DELETE request is made deletion happens and status code is returned.
 
 To check my other work please go to:
 

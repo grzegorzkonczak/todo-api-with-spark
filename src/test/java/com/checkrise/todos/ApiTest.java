@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class ApiTest {
     public static final String PORT = "4568";
@@ -109,7 +109,36 @@ public class ApiTest {
         assertEquals(newName, dao.findById(todo.getId()).getName());
     }
 
+    @Test
+    public void deletingTodoRemovesItFromDatabase() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
 
+        client.request("DELETE", "/api/v1/todos/" + todo.getId());
+
+        assertNull(dao.findById(todo.getId()));
+    }
+
+    @Test
+    public void deletingTodoSendsBackEmptyBody() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        ApiResponse response = client.request("DELETE", "/api/v1/todos/" + todo.getId());
+        Object emptyBody = gson.fromJson(response.getBody(), Todo.class);
+
+        assertNull(emptyBody);
+    }
+
+    @Test
+    public void deletingTodoSendsBackProperStatusCode() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        ApiResponse response = client.request("DELETE", "/api/v1/todos/" + todo.getId());
+
+        assertEquals(200, response.getStatus());
+    }
 
     private Todo newTestTodo() {
         return new Todo("Test", true);
