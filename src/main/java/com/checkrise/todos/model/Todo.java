@@ -4,11 +4,11 @@ package com.checkrise.todos.model;
 public class Todo {
     private int id;
     private String name;
-    private boolean isCompleated;
+    private boolean completed;
 
-    public Todo(String name, boolean isCompleated) {
+    public Todo(String name, boolean completed) {
         this.name = name;
-        this.isCompleated = isCompleated;
+        this.completed = completed;
     }
 
     public int getId() {
@@ -27,12 +27,12 @@ public class Todo {
         this.name = name;
     }
 
-    public boolean isCompleated() {
-        return isCompleated;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setCompleated(boolean compleated) {
-        isCompleated = compleated;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Todo {
         Todo todo = (Todo) o;
 
         if (id != todo.id) return false;
-        if (isCompleated != todo.isCompleated) return false;
+        if (completed != todo.completed) return false;
         return name.equals(todo.name);
     }
 
@@ -51,7 +51,7 @@ public class Todo {
     public int hashCode() {
         int result = id;
         result = 31 * result + name.hashCode();
-        result = 31 * result + (isCompleated ? 1 : 0);
+        result = 31 * result + (completed ? 1 : 0);
         return result;
     }
 }
