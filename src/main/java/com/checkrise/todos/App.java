@@ -41,15 +41,23 @@ public class App {
             return null;
         });
 
-        // GET API method -returns all Todos and populates web application
+        // GET API route - returns all Todos and populates web application
         get("/api/v1/todos", "application/json",
                 (req, res) -> dao.findAll(), gson::toJson);
 
-        // POST API method - creates new to'do in database
+        // POST API route - creates new to'do in database
         post("/api/v1/todos", "application/json", (req, res) -> {
             Todo todo = gson.fromJson(req.body(), Todo.class);
             dao.create(todo);
             res.status(201);
+            return todo;
+        }, gson::toJson);
+
+        // PUT API route - updates existing to'do
+        put("/api/v1/todos/:id", "application/json", (req, res) -> {
+            Todo todo = gson.fromJson(req.body(), Todo.class);
+            dao.update(todo);
+            res.status(202);
             return todo;
         }, gson::toJson);
     }
