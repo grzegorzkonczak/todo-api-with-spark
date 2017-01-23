@@ -2,15 +2,18 @@ package com.checkrise.todos;
 
 
 import com.checkrise.testing.ApiClient;
+import com.checkrise.testing.ApiResponse;
 import com.checkrise.todos.dao.Sql2oTodoDao;
 import com.google.gson.Gson;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import spark.Spark;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class ApiTest {
     public static final String PORT = "4568";
@@ -43,5 +46,15 @@ public class ApiTest {
     @After
     public void tearDown() throws Exception {
         conn.close();
+    }
+
+    @Test
+    public void addingTodosReturnsCreatedStatus() throws Exception {
+        Map<String, Object> values = new HashMap<>();
+        values.put("name", "Test");
+        values.put("completed", true);
+        ApiResponse response = client.request("POST", "/api/v1/todos", gson.toJson(values));
+
+        assertEquals(201, response.getStatus());
     }
 }
