@@ -69,6 +69,20 @@ public class Sql2oTodoDaoTest {
         assertEquals(newCompleted, dao.findById(todo.getId()).isCompleted());
     }
 
+    @Test
+    public void addedTodosAreReturnedFromFindAll() throws Exception {
+        Todo todo = newTestTodo();
+
+        dao.create(todo);
+
+        assertEquals(1, dao.findAll().size());
+    }
+
+    @Test
+    public void noTodosReturnsEmptyList() throws Exception {
+        assertEquals(0, dao.findAll().size());
+    }
+
     private Todo newTestTodo() {
         return new Todo("Test", true);
     }

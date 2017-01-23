@@ -38,6 +38,7 @@ public class Sql2oTodoDao implements TodoDao{
         }
     }
 
+    // Updates existing to'do name and completion status
     @Override
     public void update(Todo todo) throws DaoException {
         // Create SQL statement
@@ -59,6 +60,7 @@ public class Sql2oTodoDao implements TodoDao{
 
     }
 
+    // Finds existing to'do by it's id
     @Override
     public Todo findById(int id) throws DaoException {
         try (Connection conn = sql2o.open()){
@@ -69,8 +71,13 @@ public class Sql2oTodoDao implements TodoDao{
         }
     }
 
+    // Finds and returns all existing todos as list
     @Override
     public List<Todo> findAll() {
-        return null;
+        try (Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM todos")
+                    .addColumnMapping("IS_COMPLETED", "completed")
+                    .executeAndFetch(Todo.class);
+        }
     }
 }
