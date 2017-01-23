@@ -36,6 +36,11 @@ public class Sql2oTodoDaoTest {
     }
 
     @Test
+    public void whenSearchingForNonExistingTodoReturnsNull() throws Exception {
+        assertNull(dao.findById(2));
+    }
+
+    @Test
     public void existingTodosCanBeFoundById() throws Exception {
         Todo todo = newTestTodo();
         dao.create(todo);
@@ -81,6 +86,26 @@ public class Sql2oTodoDaoTest {
     @Test
     public void noTodosReturnsEmptyList() throws Exception {
         assertEquals(0, dao.findAll().size());
+    }
+
+    @Test
+    public void deletingTodoRemovesItFromDatabase() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        dao.delete(todo.getId());
+
+        assertNull(dao.findById(todo.getId()));
+    }
+
+    @Test
+    public void deletingNonExistingTodoDoesNotRemovesExistingTodos() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        dao.delete(42);
+
+        assertEquals(1, dao.findAll().size());
     }
 
     private Todo newTestTodo() {
