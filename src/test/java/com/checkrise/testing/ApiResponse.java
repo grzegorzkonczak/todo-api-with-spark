@@ -1,4 +1,4 @@
-package com.checkrise.todos.testing;
+package com.checkrise.testing;
 
 // This class holds data (status code, response body)
 // sent by API in response to given requests

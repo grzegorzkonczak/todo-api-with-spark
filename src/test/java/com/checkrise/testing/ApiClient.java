@@ -1,4 +1,4 @@
-package com.checkrise.todos.testing;
+package com.checkrise.testing;
 
 import spark.utils.IOUtils;
 
